@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wu.mapper.AnaResultCrossingDistanceMapper">
+  <resultMap id="BaseResultMap" type="com.wu.entity.AnaResultCrossingDistance">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="lkbh" jdbcType="VARCHAR" property="lkbh" />
+    <result column="lkmc" jdbcType="VARCHAR" property="lkmc" />
+    <result column="jkdfxh" jdbcType="NUMERIC" property="jkdfxh" />
+    <result column="fa_green" jdbcType="NUMERIC" property="faGreen" />
+    <result column="lk_green" jdbcType="NUMERIC" property="lkGreen" />
+    <result column="gzxr" jdbcType="NUMERIC" property="gzxr" />
+    <result column="jg" jdbcType="NUMERIC" property="jg" />
+    <result column="schemal_id" jdbcType="NUMERIC" property="schemalId" />
+    <result column="start_hour" jdbcType="NUMERIC" property="startHour" />
+    <result column="start_minute" jdbcType="NUMERIC" property="startMinute" />
+    <result column="end_hour" jdbcType="NUMERIC" property="endHour" />
+    <result column="end_minute" jdbcType="NUMERIC" property="endMinute" />
+    <result column="schedule_name" jdbcType="VARCHAR" property="scheduleName" />
+    <result column="schedule_week" jdbcType="NUMERIC" property="scheduleWeek" />
+    <result column="schedule_month" jdbcType="NUMERIC" property="scheduleMonth" />
+    <result column="schedule_date" jdbcType="NUMERIC" property="scheduleDate" />
+    <result column="dayplan_id" jdbcType="NUMERIC" property="dayplanId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, lkbh, lkmc, jkdfxh, fa_green, lk_green, gzxr, jg, schemal_id, start_hour, start_minute, 
+    end_hour, end_minute, schedule_name, schedule_week, schedule_month, schedule_date, 
+    dayplan_id, create_time, edit_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ana_result_crossing_distance
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from ana_result_crossing_distance
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wu.entity.AnaResultCrossingDistance">
+    insert into ana_result_crossing_distance (id, lkbh, lkmc, 
+      jkdfxh, fa_green, lk_green, 
+      gzxr, jg, schemal_id, 
+      start_hour, start_minute, end_hour, 
+      end_minute, schedule_name, schedule_week, 
+      schedule_month, schedule_date, dayplan_id, 
+      create_time, edit_time)
+    values ((select nextval('ana_result_crossing_distance_id_seq'::regclass)), #{lkbh,jdbcType=VARCHAR}, #{lkmc,jdbcType=VARCHAR},
+      #{jkdfxh,jdbcType=NUMERIC}, #{faGreen,jdbcType=NUMERIC}, #{lkGreen,jdbcType=NUMERIC}, 
+      #{gzxr,jdbcType=NUMERIC}, #{jg,jdbcType=NUMERIC}, #{schemalId,jdbcType=NUMERIC}, 
+      #{startHour,jdbcType=NUMERIC}, #{startMinute,jdbcType=NUMERIC}, #{endHour,jdbcType=NUMERIC}, 
+      #{endMinute,jdbcType=NUMERIC}, #{scheduleName,jdbcType=VARCHAR}, #{scheduleWeek,jdbcType=NUMERIC}, 
+      #{scheduleMonth,jdbcType=NUMERIC}, #{scheduleDate,jdbcType=NUMERIC}, #{dayplanId,jdbcType=NUMERIC}, 
+      (select current_timestamp(0)::timestamp without time zone), (select current_timestamp(0)::timestamp without time zone))
+  </insert>
+  <insert id="insertSelective" parameterType="com.wu.entity.AnaResultCrossingDistance">
+    insert into ana_result_crossing_distance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="lkbh != null">
+        lkbh,
+      </if>
+      <if test="lkmc != null">
+        lkmc,
+      </if>
+      <if test="jkdfxh != null">
+        jkdfxh,
+      </if>
+      <if test="faGreen != null">
+        fa_green,
+      </if>
+      <if test="lkGreen != null">
+        lk_green,
+      </if>
+      <if test="gzxr != null">
+        gzxr,
+      </if>
+      <if test="jg != null">
+        jg,
+      </if>
+      <if test="schemalId != null">
+        schemal_id,
+      </if>
+      <if test="startHour != null">
+        start_hour,
+      </if>
+      <if test="startMinute != null">
+        start_minute,
+      </if>
+      <if test="endHour != null">
+        end_hour,
+      </if>
+      <if test="endMinute != null">
+        end_minute,
+      </if>
+      <if test="scheduleName != null">
+        schedule_name,
+      </if>
+      <if test="scheduleWeek != null">
+        schedule_week,
+      </if>
+      <if test="scheduleMonth != null">
+        schedule_month,
+      </if>
+      <if test="scheduleDate != null">
+        schedule_date,
+      </if>
+      <if test="dayplanId != null">
+        dayplan_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="editTime != null">
+        edit_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      (select nextval('ana_result_crossing_distance_id_seq'::regclass)),
+      <if test="lkbh != null">
+        #{lkbh,jdbcType=VARCHAR},
+      </if>
+      <if test="lkmc != null">
+        #{lkmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jkdfxh != null">
+        #{jkdfxh,jdbcType=NUMERIC},
+      </if>
+      <if test="faGreen != null">
+        #{faGreen,jdbcType=NUMERIC},
+      </if>
+      <if test="lkGreen != null">
+        #{lkGreen,jdbcType=NUMERIC},
+      </if>
+      <if test="gzxr != null">
+        #{gzxr,jdbcType=NUMERIC},
+      </if>
+      <if test="jg != null">
+        #{jg,jdbcType=NUMERIC},
+      </if>
+      <if test="schemalId != null">
+        #{schemalId,jdbcType=NUMERIC},
+      </if>
+      <if test="startHour != null">
+        #{startHour,jdbcType=NUMERIC},
+      </if>
+      <if test="startMinute != null">
+        #{startMinute,jdbcType=NUMERIC},
+      </if>
+      <if test="endHour != null">
+        #{endHour,jdbcType=NUMERIC},
+      </if>
+      <if test="endMinute != null">
+        #{endMinute,jdbcType=NUMERIC},
+      </if>
+      <if test="scheduleName != null">
+        #{scheduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleWeek != null">
+        #{scheduleWeek,jdbcType=NUMERIC},
+      </if>
+      <if test="scheduleMonth != null">
+        #{scheduleMonth,jdbcType=NUMERIC},
+      </if>
+      <if test="scheduleDate != null">
+        #{scheduleDate,jdbcType=NUMERIC},
+      </if>
+      <if test="dayplanId != null">
+        #{dayplanId,jdbcType=NUMERIC},
+      </if>
+      <if test="createTime != null">
+        (select current_timestamp(0)::timestamp without time zone),
+      </if>
+      <if test="editTime != null">
+        (select current_timestamp(0)::timestamp without time zone),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wu.entity.AnaResultCrossingDistance">
+    update ana_result_crossing_distance
+    <set>
+      <if test="lkbh != null">
+        lkbh = #{lkbh,jdbcType=VARCHAR},
+      </if>
+      <if test="lkmc != null">
+        lkmc = #{lkmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jkdfxh != null">
+        jkdfxh = #{jkdfxh,jdbcType=NUMERIC},
+      </if>
+      <if test="faGreen != null">
+        fa_green = #{faGreen,jdbcType=NUMERIC},
+      </if>
+      <if test="lkGreen != null">
+        lk_green = #{lkGreen,jdbcType=NUMERIC},
+      </if>
+      <if test="gzxr != null">
+        gzxr = #{gzxr,jdbcType=NUMERIC},
+      </if>
+      <if test="jg != null">
+        jg = #{jg,jdbcType=NUMERIC},
+      </if>
+      <if test="schemalId != null">
+        schemal_id = #{schemalId,jdbcType=NUMERIC},
+      </if>
+      <if test="startHour != null">
+        start_hour = #{startHour,jdbcType=NUMERIC},
+      </if>
+      <if test="startMinute != null">
+        start_minute = #{startMinute,jdbcType=NUMERIC},
+      </if>
+      <if test="endHour != null">
+        end_hour = #{endHour,jdbcType=NUMERIC},
+      </if>
+      <if test="endMinute != null">
+        end_minute = #{endMinute,jdbcType=NUMERIC},
+      </if>
+      <if test="scheduleName != null">
+        schedule_name = #{scheduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleWeek != null">
+        schedule_week = #{scheduleWeek,jdbcType=NUMERIC},
+      </if>
+      <if test="scheduleMonth != null">
+        schedule_month = #{scheduleMonth,jdbcType=NUMERIC},
+      </if>
+      <if test="scheduleDate != null">
+        schedule_date = #{scheduleDate,jdbcType=NUMERIC},
+      </if>
+      <if test="dayplanId != null">
+        dayplan_id = #{dayplanId,jdbcType=NUMERIC},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        edit_time = (select current_timestamp(0)::timestamp without time zone),
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wu.entity.AnaResultCrossingDistance">
+    update ana_result_crossing_distance
+    set lkbh = #{lkbh,jdbcType=VARCHAR},
+      lkmc = #{lkmc,jdbcType=VARCHAR},
+      jkdfxh = #{jkdfxh,jdbcType=NUMERIC},
+      fa_green = #{faGreen,jdbcType=NUMERIC},
+      lk_green = #{lkGreen,jdbcType=NUMERIC},
+      gzxr = #{gzxr,jdbcType=NUMERIC},
+      jg = #{jg,jdbcType=NUMERIC},
+      schemal_id = #{schemalId,jdbcType=NUMERIC},
+      start_hour = #{startHour,jdbcType=NUMERIC},
+      start_minute = #{startMinute,jdbcType=NUMERIC},
+      end_hour = #{endHour,jdbcType=NUMERIC},
+      end_minute = #{endMinute,jdbcType=NUMERIC},
+      schedule_name = #{scheduleName,jdbcType=VARCHAR},
+      schedule_week = #{scheduleWeek,jdbcType=NUMERIC},
+      schedule_month = #{scheduleMonth,jdbcType=NUMERIC},
+      schedule_date = #{scheduleDate,jdbcType=NUMERIC},
+      dayplan_id = #{dayplanId,jdbcType=NUMERIC},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      edit_time = (select current_timestamp(0)::timestamp without time zone)
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getCount" parameterType="com.wu.entity.AnaResultCrossingDistance"
+          resultType="java.lang.Integer">
+    select count(*) from public.ana_result_crossing_distance
+  </select>
+  <select id="getCount2" parameterType="com.wu.entity.AnaResultCrossingDistance"
+          resultType="java.lang.Integer">
+  select count(*) from public.ana_result_crossing_distance
+  where id>0
+    <if test="lkbh != null">
+      and lkbh = #{lkbh,jdbcType=VARCHAR}
+    </if>
+    <if test="lkmc != null">
+      and lkmc = #{lkmc,jdbcType=VARCHAR}
+    </if>
+    <if test="jkdfxh != null">
+      and jkdfxh = #{jkdfxh,jdbcType=NUMERIC}
+    </if>
+    <if test="faGreen != null">
+      and fa_green = #{faGreen,jdbcType=NUMERIC}
+    </if>
+    <if test="lkGreen != null">
+      and lk_green = #{lkGreen,jdbcType=NUMERIC}
+    </if>
+    <if test="gzxr != null">
+      and gzxr = #{gzxr,jdbcType=NUMERIC}
+    </if>
+    <if test="jg != null">
+      and jg = #{jg,jdbcType=NUMERIC}
+    </if>
+    <if test="schemalId != null">
+      and schemal_id = #{schemalId,jdbcType=NUMERIC}
+    </if>
+    <if test="startHour != null">
+      and start_hour = #{startHour,jdbcType=NUMERIC}
+    </if>
+    <if test="startMinute != null">
+      and start_minute = #{startMinute,jdbcType=NUMERIC}
+    </if>
+    <if test="endHour != null">
+      and end_hour = #{endHour,jdbcType=NUMERIC}
+    </if>
+    <if test="endMinute != null">
+      and end_minute = #{endMinute,jdbcType=NUMERIC}
+    </if>
+    <if test="scheduleName != null">
+      and schedule_name = #{scheduleName,jdbcType=VARCHAR}
+    </if>
+    <if test="scheduleWeek != null">
+      and schedule_week = #{scheduleWeek,jdbcType=NUMERIC}
+    </if>
+    <if test="scheduleMonth != null">
+      and schedule_month = #{scheduleMonth,jdbcType=NUMERIC}
+    </if>
+    <if test="scheduleDate != null">
+      and schedule_date = #{scheduleDate,jdbcType=NUMERIC}
+    </if>
+    <if test="dayplanId != null">
+      and dayplan_id = #{dayplanId,jdbcType=NUMERIC}
+    </if>
+  </select>
+  <select id="findList" parameterType="com.wu.entity.AnaResultCrossingDistance" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from ana_result_crossing_distance
+  where id>0
+    <if test="lkbh != null">
+      and lkbh = #{lkbh,jdbcType=VARCHAR}
+    </if>
+    <if test="lkmc != null">
+      and lkmc = #{lkmc,jdbcType=VARCHAR}
+    </if>
+    <if test="jkdfxh != null">
+      and jkdfxh = #{jkdfxh,jdbcType=NUMERIC}
+    </if>
+    <if test="faGreen != null">
+      and fa_green = #{faGreen,jdbcType=NUMERIC}
+    </if>
+    <if test="lkGreen != null">
+      and lk_green = #{lkGreen,jdbcType=NUMERIC}
+    </if>
+    <if test="gzxr != null">
+      and gzxr = #{gzxr,jdbcType=NUMERIC}
+    </if>
+    <if test="jg != null">
+      and jg = #{jg,jdbcType=NUMERIC}
+    </if>
+    <if test="schemalId != null">
+      and schemal_id = #{schemalId,jdbcType=NUMERIC}
+    </if>
+    <if test="startHour != null">
+      and start_hour = #{startHour,jdbcType=NUMERIC}
+    </if>
+    <if test="startMinute != null">
+      and start_minute = #{startMinute,jdbcType=NUMERIC}
+    </if>
+    <if test="endHour != null">
+      and end_hour = #{endHour,jdbcType=NUMERIC}
+    </if>
+    <if test="endMinute != null">
+      and end_minute = #{endMinute,jdbcType=NUMERIC}
+    </if>
+    <if test="scheduleName != null">
+      and schedule_name = #{scheduleName,jdbcType=VARCHAR}
+    </if>
+    <if test="scheduleWeek != null">
+      and schedule_week = #{scheduleWeek,jdbcType=NUMERIC}
+    </if>
+    <if test="scheduleMonth != null">
+      and schedule_month = #{scheduleMonth,jdbcType=NUMERIC}
+    </if>
+    <if test="scheduleDate != null">
+      and schedule_date = #{scheduleDate,jdbcType=NUMERIC}
+    </if>
+    <if test="dayplanId != null">
+      and dayplan_id = #{dayplanId,jdbcType=NUMERIC}
+    </if>
+  </select>
+  <select id="getByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from public.ana_result_crossing_distance
+    <if test="currentPage != null and pageSize !=null">
+      limit ${pageSize} OFFSET ${startIndex}
+    </if>
+  </select>
+</mapper>
